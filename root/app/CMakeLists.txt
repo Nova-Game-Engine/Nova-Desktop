@@ -12,7 +12,6 @@ target_include_directories(app PRIVATE
 target_link_libraries(app
     PRIVATE
         ${PROJECT_NAME}
-        fmt
 )
 
 # Optional: Set output to bin/

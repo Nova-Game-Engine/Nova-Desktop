@@ -1,2 +1,2 @@
-CPMAddPackage("gh:rhackerd/Nova-Log@1.0.4")
-CPMAddPackage("gh:fmtlib/fmt#12.0.0")
+CPMAddPackage("gh:rhackerd/Nova-Log@1.0.5")
+CPMAddPackage("gh:Nova-Game-Engine/Nova-Core@1.0.0")

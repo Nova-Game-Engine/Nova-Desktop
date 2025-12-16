@@ -1,13 +1,26 @@
-#include "core.h"
-Core::Core(): _l("Cmake Template") {
-}
+#include "Nova/Desktop/core.h"
 
-Core::~Core() {}
+namespace Nova::Desktop {
+    bool Man::Init(InitFlags f) {
+        if (f & INIT_VIDEO)   f |= INIT_EVENTS;
+        if (f & INIT_GAMEPAD) f |= INIT_JOYSTICK | INIT_EVENTS;
+        if (f & INIT_JOYSTICK)f |= INIT_EVENTS;
+        if (f & INIT_SENSOR)  f |= INIT_EVENTS;
 
-void Core::load() {
-    _l.info("Core loaded.");
-}
+        bool out = SDL_Init(f);
+        if (out) {
+            NINFO("SDL initiated");
+        }else {
+            NERROR("SDL initiated unsuccessfully");
+        }
+        return out;
+    };
 
-void Core::unload() {
-    _l.info("Core unloaded");
-}
+    void Man::Shutdown() {
+        SDL_Quit();
+    };
+
+    bool Man::PollEvents(SDL_Event* event) {
+        return SDL_PollEvent(event);
+    }
+};

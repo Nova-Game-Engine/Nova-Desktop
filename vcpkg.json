@@ -2,6 +2,9 @@
   "name": "template-cmake",
   "version-string": "1.0.0",
   "dependencies": [
+    "cglm",
+    "spdlog",
+    "fmt"
   ],
-  "builtin-baseline": "latest"
+  "builtin-baseline": "e93bf5796351d422408a2e3ebf88dce98151ae45"
 }

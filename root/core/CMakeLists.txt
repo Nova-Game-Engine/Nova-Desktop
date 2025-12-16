@@ -11,11 +11,17 @@ add_library(Nova::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 # Include directory
 target_include_directories(${PROJECT_NAME} PUBLIC
     "${CMAKE_CURRENT_SOURCE_DIR}/include"
-)
+
+    )
+
+find_package(SDL3 CONFIG REQUIRED)
+
 
 # Link dependencies
 target_link_libraries(${PROJECT_NAME}
     PUBLIC
         fmt::fmt
         Nova::Logger
+        Nova::Core
+        SDL3::SDL3
 )
