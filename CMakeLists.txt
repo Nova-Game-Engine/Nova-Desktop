@@ -8,7 +8,7 @@ if(DEFINED ENV{VCPKG_ROOT} AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
         CACHE STRING "Vcpkg toolchain file")
 endif()
 
-project(template_cmake)
+project(NovaDesktop)
 
 if (NOT SDL3_FOUND)
     find_package(SDL3 QUIET)
@@ -41,7 +41,6 @@ include(cmake/CPM.cmake)
 include(Libs.cmake)
 
 add_subdirectory(root/core)
-add_subdirectory(root/module)
 if (CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
     add_subdirectory(root/app)
     message(STATUS "[${PROJECT_NAME}] Building as standalone app -> compiling src/app")
