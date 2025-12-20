@@ -8,6 +8,8 @@ if(DEFINED ENV{VCPKG_ROOT} AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
         CACHE STRING "Vcpkg toolchain file")
 endif()
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 project(NovaDesktop)
 
 if (NOT SDL3_FOUND)

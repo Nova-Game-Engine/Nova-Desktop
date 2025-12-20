@@ -21,10 +21,11 @@ namespace Nova::Desktop {
 
 
         public:
-            bool Init(InitFlags flags);
-            void Shutdown();
-            std::vector<const char*> GetExtensions(); 
+            bool init(InitFlags flags);
+            void shutdown();
+            std::vector<const char*> getExtensions();
+            void appendExtensions(std::vector<const char*>& extensions);
 
-            bool PollEvents(SDL_Event* event); // Just a wrapper
+            bool pollEvents(SDL_Event* event); // Just a wrapper
     };
 };
