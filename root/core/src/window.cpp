@@ -3,7 +3,7 @@
 
 namespace Nova::Desktop {
     void Window::create(const std::string& title, const Core::Vec2& size, SDL_WindowFlags flags) {
-        SDL_CreateWindow(title.c_str(), size.v[0], size.v[1], flags);
+        oHandle = SDL_CreateWindow(title.c_str(), size.v[0], size.v[1], flags);
         
     };
 
@@ -31,7 +31,7 @@ namespace Nova::Desktop {
                 instance,
                 nullptr,
                 &cSurface
-            )) {
+        )) {
             throw std::runtime_error(SDL_GetError());
         }
 
