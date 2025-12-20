@@ -25,6 +25,7 @@ namespace Nova::Desktop {
             void create(const std::string& title, const Core::Vec2& size, SDL_WindowFlags flags = SDL_WINDOW_VULKAN | SDL_WINDOWPOS_CENTERED);
             void destroy(const vk::Instance& instance);
             vk::SurfaceKHR& createSurface(const vk::Instance& instance);
+            vk::SurfaceKHR& createSurface(const VkInstance& instance);
         
         public:
             SDL_Window& get() {return *oHandle;}
