@@ -12,27 +12,31 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 project(NovaDesktop)
 
-if (NOT SDL3_FOUND)
-    find_package(SDL3 QUIET)
-endif()
+if(NOT TARGET SDL3::SDL3)
+    if (NOT SDL3_FOUND)
+        find_package(SDL3 QUIET)
+    endif()
 
-# this message is generated using AI (so it could be more readable overall)
-if(NOT SDL3_FOUND)
-    message(WARNING
-        "\n"
-        "============================================================\n"
-        " SDL3 was NOT found on this system.\n"
-        "\n"
-        " Nova Desktop does NOT support building SDL3 via vcpkg on Linux.\n"
-        "\n"
-        " Please install SDL3 from your system package manager:\n"
-        "   Fedora: sudo dnf install SDL3-devel\n"
-        "   Arch:   sudo pacman -S sdl3\n"
-        "   Ubuntu: sudo apt install libsdl3-dev\n"
-        "\n"
-        " Build will continue, but the application target may fail.\n"
-        "============================================================\n"
-    )
+    # this message is generated using AI (so it could be more readable overall)
+    if(NOT SDL3_FOUND)
+        message(WARNING
+            "\n"
+            "============================================================\n"
+            " SDL3 was NOT found on this system.\n"
+            "\n"
+            " Nova Desktop does NOT support building SDL3 via vcpkg on Linux.\n"
+            "\n"
+            " Please install SDL3 from your system package manager:\n"
+            "   Fedora: sudo dnf install SDL3-devel\n"
+            "   Arch:   sudo pacman -S sdl3\n"
+            "   Ubuntu: sudo apt install libsdl3-dev\n"
+            "\n"
+            " Build will continue, but the application target may fail.\n"
+            "============================================================\n"
+        )
+    endif()
+else()
+    message(STATUS "GE Patch has been applied")
 endif()
 
 find_package(spdlog CONFIG REQUIRED)
