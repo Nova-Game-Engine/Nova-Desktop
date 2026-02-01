@@ -55,5 +55,6 @@ namespace Nova::Desktop {
         
         public:
             SDL_Window& get() {return *oHandle;}
+            vk::SurfaceKHR& getSurface() {return surface;}
     };
 };
