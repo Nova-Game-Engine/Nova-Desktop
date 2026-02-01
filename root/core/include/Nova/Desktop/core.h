@@ -54,6 +54,7 @@ namespace Nova::Desktop {
         public:
 
             Man(CreateInfo::Man& CreateInfo) {}
+            Man() {};
             ~Man() {shutdown();}
 
             bool init(CreateInfo::Man& CreateInfo);
