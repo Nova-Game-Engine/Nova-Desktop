@@ -5,7 +5,9 @@
 #include <vector>
 
 namespace Nova::Desktop {
-    bool Man::init(InitFlags f) {
+
+    bool Man::init(CreateInfo::Man& CreateInfo) {
+        InitFlags f = CreateInfo.flags;
         if (f & INIT_VIDEO)   f |= INIT_EVENTS;
         if (f & INIT_GAMEPAD) f |= INIT_JOYSTICK | INIT_EVENTS;
         if (f & INIT_JOYSTICK)f |= INIT_EVENTS;

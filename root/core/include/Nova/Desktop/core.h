@@ -5,7 +5,17 @@
 #include <vulkan/vulkan.hpp>
 #include <cstdint>
 
+#if defined(__clang__) || defined(__GNUC__)
+    #define INTERNAL [[deprecated("Internal use only")]]
+#elif defined(_MSC_VER)
+    #define INTERNAL __declspec(deprecated("Internal use only"))
+#else
+    #define INTERNAL
+#endif
+
+
 namespace Nova::Desktop {
+
     using InitFlags = std::uint32_t;
 
     constexpr InitFlags INIT_VIDEO  = SDL_INIT_VIDEO;
@@ -15,14 +25,37 @@ namespace Nova::Desktop {
     constexpr InitFlags INIT_JOYSTICK= SDL_INIT_JOYSTICK;
     constexpr InitFlags INIT_SENSOR = SDL_INIT_SENSOR;
 
+    namespace CreateInfo {
+        struct Man {
+            InitFlags flags = INIT_VIDEO | INIT_EVENTS;
+
+
+            class Builder {
+                private:Man* info;
+                public:
+                    Builder() : info(new Man()) {};
+                    ~Builder() {if (info != nullptr) delete info;};
+                    Builder& enableVideo() {info->flags |= INIT_VIDEO; return *this;};
+                    Builder& enableAudio() {info->flags |= INIT_AUDIO; return *this;};
+                    Builder& enableGamepad() {info->flags |= INIT_GAMEPAD; return *this;};
+                    Builder& enableEvents() {info->flags |= INIT_EVENTS; return *this;};
+                    Builder& enableJoystick() {info->flags |= INIT_JOYSTICK; return *this;};
+                    Builder& enableSensor() {info->flags |= INIT_SENSOR; return *this;};
+                    Man& build() {return *info;};
+            };
+        };
+    };
+
     class Man {
         private:
             NOVA_LOG_DEF("Man");
 
 
         public:
-            bool init(InitFlags flags);
+            bool init(CreateInfo::Man& CreateInfo);
             void shutdown();
+
+
             std::vector<const char*> getExtensions();
             void appendExtensions(std::vector<const char*>& extensions);
 

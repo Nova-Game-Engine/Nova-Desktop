@@ -10,11 +10,21 @@
 
 int main() {
     Nova::Desktop::Man man;
-    man.Init(Nova::Desktop::INIT_VIDEO);
+
+    Nova::Desktop::CreateInfo::Man createInfo = Nova::Desktop::CreateInfo::Man::Builder()
+        .enableVideo()
+        .build();
+
+    man.init(createInfo);
 
     Nova::Desktop::Window window;
 
-    window.create("test", {100, 100});
+    Nova::Desktop::CreateInfo::Window windowcreateInfo = Nova::Desktop::CreateInfo::Window::Builder()
+        .setTitle("Nova Desktop test")
+        .setSize({800, 600})
+        .build();
+
+    window.create(windowcreateInfo);
     //window.createSurface(nullptr);
 
     bool running = true;
@@ -30,5 +40,5 @@ int main() {
 
     window.destroy(nullptr);
 
-    man.Shutdown();
+    man.shutdown();
 }

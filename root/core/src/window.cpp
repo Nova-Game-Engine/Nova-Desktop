@@ -2,8 +2,8 @@
 #include <vulkan/vulkan_core.h>
 
 namespace Nova::Desktop {
-    void Window::create(const std::string& title, const Core::Vec2& size, SDL_WindowFlags flags) {
-        oHandle = SDL_CreateWindow(title.c_str(), size.v[0], size.v[1], flags);
+    void Window::create(Nova::Desktop::CreateInfo::Window& CreateInfo) {
+        oHandle = SDL_CreateWindow(CreateInfo.title.c_str(), CreateInfo.size[0], CreateInfo.size[1], CreateInfo.flags);
         
     };
 
